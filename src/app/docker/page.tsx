@@ -122,7 +122,7 @@ volumes:
         {/* Header */}
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 flex items-center justify-center">
-            <Docker className="w-10 h-10 mr-3 text-blue-600" />
+            <Container className="w-10 h-10 mr-3 text-blue-600" />
             Docker Configuration
           </h1>
           <p className="text-xl text-gray-600 dark:text-gray-300">

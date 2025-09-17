@@ -48,7 +48,7 @@ const WikiComponent = () => {
   return (
     <div className="p-6 bg-white dark:bg-gray-800 rounded-lg shadow-lg">
       <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-        Wikipedia Search Results for "La Trobe University"
+        Wikipedia Search Results for &quot;La Trobe University&quot;
       </h2>
       {error && <p className="text-red-500 mb-4">Error: {error}</p>}
       <ul className="space-y-2">

@@ -78,7 +78,7 @@ const MonitoringDashboard: React.FC = () => {
       <div className="link-box">
         <h2>Open Jaeger:</h2>
         <p>
-          Set Services to <strong>'next-app'</strong>, Loopback - <strong>'last hour'</strong>, then click "find"
+          Set Services to <strong>&apos;next-app&apos;</strong>, Loopback - <strong>&apos;last hour&apos;</strong>, then click &quot;find&quot;
         </p>
         <p>
           <a href={`${baseUrl}:16686/`} target="_blank" rel="noopener noreferrer">
@@ -104,9 +104,9 @@ const MonitoringDashboard: React.FC = () => {
       <div className="link-box">
         <h2>Open Zipkin:</h2>
         <p>
-          Set <strong>'ServiceName'</strong> to <strong>Next-app</strong>
+          Set <strong>&apos;ServiceName&apos;</strong> to <strong>Next-app</strong>
           <br />
-          Set <strong>'loopback'</strong> to the last hour, then click 'Run Query'
+          Set <strong>&apos;loopback&apos;</strong> to the last hour, then click &apos;Run Query&apos;
         </p>
         <p>
           <a href={`${baseUrl}:9411/`} target="_blank" rel="noopener noreferrer">
@@ -135,7 +135,7 @@ const MonitoringDashboard: React.FC = () => {
           <li>Try a wrong API (e.g. /api/hello1) to generate errors</li>
           <li><strong>Jaeger</strong> - Service - select Nextjs (make sure you select last hour) and you should see some spans</li>
           <li><strong>Zipkin</strong> - Service - select Nextjs (make sure you select last hour) and you should be able to see logs</li>
-          <li><strong>Prometheus</strong> - Query - "otelcol_exporter_sent_spans" - this takes a while to populate, before getting the results. Might need to set the day and the last 12 hours</li>
+          <li><strong>Prometheus</strong> - Query - &quot;otelcol_exporter_sent_spans&quot; - this takes a while to populate, before getting the results. Might need to set the day and the last 12 hours</li>
           <li>If your dashboards are getting results you have successfully Instrumented your Next.JS app!</li>
           <li>Explore other queries. You can introduce bugs into your code and try and capture them and debug them</li>
         </ul>

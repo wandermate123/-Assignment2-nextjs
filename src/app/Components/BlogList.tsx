@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from './Navbar';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Define the Blog type
 type Blog = {
@@ -57,10 +58,12 @@ const BlogList = () => {
           {filteredData.map((item) => (
             <div key={item.id} className="col-md-4">
               <div className="card mb-3">
-                <img
+                <Image
                   src={item.imageUrl}
                   className="card-img-top"
                   alt="Blog"
+                  width={400}
+                  height={200}
                 />
                 <div className="card-body">
                   <h5 className="card-title">{item.title}</h5>

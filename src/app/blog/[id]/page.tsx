@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import Navbar from '../../Components/Navbar';
+import Image from 'next/image';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Define the Blog type
@@ -53,12 +54,14 @@ const BlogDetails = () => {
       <Navbar />
       <div className="container bg-light" style={{ marginTop: '5rem' }}>
         <div className="card mt-5">
-          <img
-            src={blogDetail.imageUrl}
-            style={{ maxWidth: '100%', maxHeight: '300px' }}
-            className="card-img-top"
-            alt="Blog"
-          />
+        <Image
+          src={blogDetail.imageUrl}
+          style={{ maxWidth: '100%', maxHeight: '300px' }}
+          className="card-img-top"
+          alt="Blog"
+          width={800}
+          height={300}
+        />
           <div className="card-body">
             <h1 className="card-title">{blogDetail.title}</h1>
             <p className="card-text">{blogDetail.description}</p>
