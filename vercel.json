@@ -1,11 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "package.json",
-      "use": "@vercel/next"
-    }
-  ],
   "functions": {
     "src/app/api/**/*.ts": {
       "runtime": "nodejs18.x"
@@ -13,10 +7,5 @@
   },
   "env": {
     "NODE_ENV": "production"
-  },
-  "buildCommand": "npm run verify:build && npm run build",
-  "installCommand": "npm install",
-  "framework": "nextjs",
-  "regions": ["iad1"],
-  "outputDirectory": ".next"
+  }
 }

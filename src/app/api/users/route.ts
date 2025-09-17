@@ -2,6 +2,9 @@ import { NextRequest, NextResponse } from 'next/server';
 import { User } from '@/lib/sequelize';
 import '@/lib/db-init'; // Initialize database
 
+// Check if we're in Vercel environment
+const isVercel = process.env.VERCEL === '1';
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Methods': 'GET, POST, PATCH, DELETE, OPTIONS',
@@ -19,6 +22,14 @@ export async function OPTIONS() {
 // GET – Get all users or one by ID (?id=1)
 export async function GET(request: NextRequest) {
   try {
+    // In Vercel environment, return mock data
+    if (isVercel) {
+      const mockUsers = [
+        { id: 1, name: 'Demo User', lineStatus: 'online', createdAt: new Date(), updatedAt: new Date() }
+      ];
+      return NextResponse.json(mockUsers, { headers: corsHeaders });
+    }
+
     const id = request.nextUrl.searchParams.get('id');
     if (id) {
       const user = await User.findByPk(parseInt(id));
@@ -45,6 +56,18 @@ export async function POST(request: NextRequest) {
       return new NextResponse('Missing name or lineStatus', { status: 400, headers: corsHeaders });
     }
 
+    // In Vercel environment, return mock response
+    if (isVercel) {
+      const mockUser = {
+        id: Math.floor(Math.random() * 1000),
+        name,
+        lineStatus,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      return NextResponse.json(mockUser, { status: 201, headers: corsHeaders });
+    }
+
     const newUser = await User.create({
         name, lineStatus,
     });
@@ -61,6 +84,19 @@ export async function PATCH(request: NextRequest) {
     const id = request.nextUrl.searchParams.get('id');
     if (!id) {
       return new NextResponse('Missing id', { status: 400, headers: corsHeaders });
+    }
+
+    // In Vercel environment, return mock response
+    if (isVercel) {
+      const { name, lineStatus } = await request.json();
+      const mockUser = {
+        id: parseInt(id),
+        name: name || 'Updated User',
+        lineStatus: lineStatus || 'online',
+        createdAt: new Date(),
+        updatedAt: new Date()
+      };
+      return NextResponse.json(mockUser, { headers: corsHeaders });
     }
 
     const user = await User.findByPk(parseInt(id));
@@ -86,6 +122,11 @@ export async function DELETE(request: NextRequest) {
     const id = request.nextUrl.searchParams.get('id');
     if (!id) {
       return new NextResponse('Missing id', { status: 400, headers: corsHeaders });
+    }
+
+    // In Vercel environment, return success response
+    if (isVercel) {
+      return new NextResponse(null, { status: 204, headers: corsHeaders });
     }
 
     const user = await User.findByPk(parseInt(id));

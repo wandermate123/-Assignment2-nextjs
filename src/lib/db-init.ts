@@ -10,9 +10,14 @@ export async function initializeDatabase() {
     console.log('Database initialized successfully!');
   } catch (error) {
     console.error('Error initializing database:', error);
-    throw error;
+    // Don't throw error in Vercel environment to prevent deployment failures
+    if (process.env.VERCEL !== '1') {
+      throw error;
+    }
   }
 }
 
-// Initialize database when this module is imported
-initializeDatabase().catch(console.error);
+// Only initialize database when not in Vercel environment
+if (process.env.VERCEL !== '1') {
+  initializeDatabase().catch(console.error);
+}

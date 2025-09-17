@@ -1,14 +1,12 @@
 import { Sequelize, DataTypes, Model, InferAttributes, InferCreationAttributes, CreationOptional } from 'sequelize';
-import path from 'path';
 
-// Dynamically import sqlite3 to prevent bundling issues
-import sqlite3 from 'sqlite3';
+// Check if we're in a Vercel environment
+const isVercel = process.env.VERCEL === '1';
 
-// SQLite setup with explicitly defined dialectModule
+// Use in-memory database for Vercel deployment
 export const sequelize = new Sequelize({
   dialect: 'sqlite',
-  dialectModule: sqlite3, // Make sure to use the correct sqlite3 driver
-  storage: path.resolve('./sqlite/dev.sqlite'),
+  storage: isVercel ? ':memory:' : './sqlite/dev.sqlite',
   logging: false,
 });
 
