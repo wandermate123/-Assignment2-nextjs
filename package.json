@@ -16,7 +16,8 @@
     "db:seed": "npm run db:init",
     "monitoring:start": "docker-compose -f docker-compose-monitoring.yml up -d",
     "monitoring:stop": "docker-compose -f docker-compose-monitoring.yml down",
-    "monitoring:logs": "docker-compose -f docker-compose-monitoring.yml logs -f"
+    "monitoring:logs": "docker-compose -f docker-compose-monitoring.yml logs -f",
+    "verify:build": "node scripts/verify-build.js"
   },
   "dependencies": {
     "@aws-sdk/client-apigatewayv2": "^3.890.0",
