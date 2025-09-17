@@ -1,210 +1,297 @@
-# GitHub Automation App - Assignment 2
+# Next.js Assignment 2 - CSE3CWA/CSE5006
 
-A Next.js application for automating GitHub operations with Docker, Prisma/Sequelize integration, and comprehensive testing.
+A comprehensive Next.js application built for Assignment 2, featuring dynamic pages, database integration, monitoring, and AWS deployment capabilities.
 
-## Student Information
+## 🚀 Features
 
-- **Name**: Your Name
-- **Student Number**: 12345678
-- **Subject**: CSE3CWA/CSE5006
-- **Assignment**: 2
-- **Date**: 2025
+### Core Application
+- **Next.js 15** with TypeScript and App Router
+- **Tailwind CSS** for responsive design
+- **Dark/Light Mode** theming with cookies
+- **Accessibility** compliance (WCAG 2.1 AA)
+- **Student Information** display (Student Number: 91704)
 
-## Features
+### Dynamic Blog System
+- **Blog Creation** with Bootstrap integration
+- **Dynamic Routing** for individual blog posts
+- **Search Functionality** with real-time filtering
+- **LocalStorage Persistence** for blog data
+- **Responsive Design** with mobile-first approach
 
-### Core Functionality
-- ✅ GitHub repository automation
-- ✅ Docker containerization
-- ✅ Database integration (Prisma & Sequelize)
-- ✅ Dark/Light theme support
-- ✅ Accessibility compliance
-- ✅ Cookie-based navigation state
-- ✅ Responsive design
-- ✅ Automated testing with Playwright
+### Database Integration
+- **Sequelize ORM** with SQLite database
+- **User Management** with CRUD operations
+- **Database Migrations** and seeding
+- **API Routes** for data management
+- **CORS Support** for cross-origin requests
 
-### Pages
-- **Home**: GitHub integration form with command generation
-- **About**: Student information and project description
-- **GitHub**: Advanced GitHub operations
-- **Database**: Prisma/Sequelize CRUD operations
-- **Docker**: Containerization configuration
+### GitHub Automation
+- **Git Command Execution** using execSync
+- **README.md Updates** with automated commits
+- **GitHub API Integration** for repository management
+- **Batch Operations** for multiple commands
 
-## Technology Stack
+### Docker & Containerization
+- **Multi-service Setup** with Docker Compose
+- **Frontend & API Services** separation
+- **SQLite Volume** management
+- **Development & Production** configurations
 
-### Frontend
-- Next.js 15 with App Router
-- React 18
-- TypeScript
-- Tailwind CSS
-- Lucide React Icons
+### Monitoring & Observability
+- **OpenTelemetry** instrumentation
+- **Jaeger** distributed tracing
+- **Zipkin** alternative tracing
+- **Prometheus** metrics collection
+- **Real-time Monitoring** dashboard
 
-### Backend
-- Node.js
-- Prisma ORM
-- Sequelize ORM
-- SQLite Database
+### AWS Deployment
+- **S3 Static Hosting** for website deployment
+- **Lambda Functions** for serverless backend
+- **API Gateway** for RESTful APIs
+- **Interactive Deployment** interface
+- **Cost Management** and cleanup procedures
 
-### DevOps
-- Docker
-- Docker Compose
-- GitHub Actions (ready)
-- Playwright Testing
+### Testing
+- **Playwright** end-to-end testing
+- **Cross-browser Testing** support
+- **Automated Test Suites** for all features
+- **Test Reports** and documentation
 
-## Getting Started
+## 📁 Project Structure
+
+```
+├── src/
+│   ├── app/                    # Next.js App Router pages
+│   │   ├── Components/         # React components
+│   │   ├── api/               # API routes
+│   │   └── [pages]/           # Application pages
+│   ├── components/            # Shared components
+│   └── lib/                   # Utility libraries
+├── tests/                     # Playwright test suites
+├── migrations/                # Database migrations
+├── scripts/                   # Build and deployment scripts
+├── docker-compose.yml         # Docker services
+├── instrumentation.ts         # OpenTelemetry setup
+└── README.md                  # This file
+```
+
+## 🛠️ Installation & Setup
 
 ### Prerequisites
-- Node.js 18+
-- Docker (optional)
-- Git
+- Node.js 18+ 
+- npm or yarn
+- Docker (for containerization)
+- AWS CLI (for deployment)
 
-### Installation
-
-1. Clone the repository:
+### Local Development
 ```bash
-git clone <repository-url>
+# Clone the repository
+git clone <your-repo-url>
 cd assignment-2
-```
 
-2. Install dependencies:
-```bash
+# Install dependencies
 npm install
-```
 
-3. Set up the database:
-```bash
-npx prisma generate
-npx prisma db push
-```
+# Set up environment variables
+cp .env.example .env.local
 
-4. Run the development server:
-```bash
+# Initialize database
+npm run db:init
+
+# Start development server
 npm run dev
 ```
 
-5. Open [http://localhost:3000](http://localhost:3000) in your browser.
-
 ### Docker Setup
-
-1. Build the Docker image:
 ```bash
-docker build -t git-automation-app .
-```
-
-2. Run with Docker Compose:
-```bash
+# Start all services
 docker-compose up -d
+
+# View logs
+docker-compose logs -f
 ```
 
-3. Access the application at [http://localhost:3000](http://localhost:3000)
-
-## Testing
-
-### Run Tests
+### Monitoring Setup
 ```bash
-# Run all tests
-npm test
+# Start monitoring services
+npm run monitoring:start
 
-# Run tests with UI
-npm run test:ui
-
-# Run specific test file
-npx playwright test tests/homepage.spec.ts
+# Start instrumented app
+npm run dev:instrumented
 ```
 
-### Test Coverage
-- Homepage functionality and accessibility
-- Database operations and CRUD functionality
-- Theme switching and responsive design
-- Navigation and user interactions
+## 🧪 Testing
 
-## API Endpoints
-
-### Git Operations
-- `POST /api/git/execute` - Execute single git commands
-- `POST /api/git/execute-batch` - Execute multiple git commands
-
-### Database Operations
-- `POST /api/database/save` - Save commands to database
-
-### System
-- `GET /api/health` - Health check endpoint
-- `POST /api/analytics` - Analytics tracking
-- `POST /api/errors` - Error tracking
-
-## Project Structure
-
-```
-src/
-├── app/
-│   ├── api/           # API routes
-│   ├── about/         # About page
-│   ├── database/      # Database page
-│   ├── docker/        # Docker page
-│   ├── github/        # GitHub page
-│   ├── globals.css    # Global styles
-│   ├── layout.tsx     # Root layout
-│   └── page.tsx       # Home page
-├── components/        # React components
-├── lib/              # Utility libraries
-└── types/            # TypeScript types
-
-tests/                # Playwright tests
-prisma/              # Database schema
+### Run All Tests
+```bash
+npm run test
 ```
 
-## Accessibility Features
+### Run Specific Tests
+```bash
+# Playwright tests
+npx playwright test
 
-- Skip links for keyboard navigation
-- Proper heading structure
-- ARIA labels and roles
-- Focus management
-- High contrast support
-- Screen reader compatibility
+# With UI
+npx playwright test --ui
 
-## Performance Features
+# Specific test file
+npx playwright test tests/createpost.spec.tsx
+```
 
-- Analytics and performance monitoring
-- Error tracking and logging
-- Optimized images and assets
-- Lazy loading
-- Code splitting
+### Test Reports
+```bash
+# Show test report
+npx playwright show-report
+```
 
-## Deployment
+## 🚀 Deployment
 
-### Vercel (Recommended)
-1. Connect your GitHub repository to Vercel
-2. Configure environment variables
-3. Deploy automatically on push
+### AWS Deployment
+```bash
+# Configure AWS credentials
+aws configure
 
-### Docker
-1. Build the image: `docker build -t git-automation-app .`
-2. Run: `docker run -p 3000:3000 git-automation-app`
+# Run deployment script
+./deploy-aws.sh  # Linux/Mac
+deploy-aws.bat   # Windows
 
-### Other Platforms
-- AWS Elastic Beanstalk
-- Google Cloud Run
-- Azure Container Instances
-- DigitalOcean App Platform
+# Access deployment dashboard
+# Visit: http://localhost:3000/aws-deployment
+```
 
-## Contributing
+### Docker Deployment
+```bash
+# Build and run
+docker-compose up --build
+
+# Production build
+docker-compose -f docker-compose.prod.yml up
+```
+
+## 📊 Available Pages
+
+- **Home** (`/`) - Blog listing with search
+- **About** (`/about`) - Student information
+- **Create Blog** (`/createblog`) - Blog creation form
+- **Users** (`/users`) - User management
+- **Database** (`/database`) - Database operations
+- **Docker** (`/docker`) - Containerization tools
+- **GitHub** (`/github`) - Git automation
+- **Monitoring** (`/monitoring`) - Observability dashboard
+- **AWS Deployment** (`/aws-deployment`) - Cloud deployment
+- **API Test** (`/api-test`) - API testing
+- **API Docs** (`/api-docs`) - API documentation
+
+## 🔧 API Endpoints
+
+### User Management
+- `GET /api/users` - Get all users
+- `POST /api/users` - Create user
+- `PATCH /api/users?id={id}` - Update user
+- `DELETE /api/users?id={id}` - Delete user
+
+### Testing
+- `GET /api/test` - Test endpoint
+- `POST /api/test` - Hash generation
+
+### AWS Services
+- `POST /api/aws/s3` - S3 operations
+- `POST /api/aws/lambda` - Lambda operations
+- `POST /api/aws/apigateway` - API Gateway operations
+
+## 📚 Documentation
+
+- [Assignment Summary](ASSIGNMENT_SUMMARY.md)
+- [AWS Deployment Guide](AWS_DEPLOYMENT_README.md)
+- [Monitoring Setup](MONITORING_README.md)
+
+## 🎯 Assignment Requirements
+
+### Part 1 ✅
+- [x] Next.js application with create-next-app
+- [x] Student number in top left corner
+- [x] Header with hamburger menu
+- [x] Dark/Light mode themes
+- [x] Footer with copyright and student info
+- [x] Accessibility compliance
+- [x] Cookie-based navigation memory
+- [x] About page with student details
+- [x] GitHub integration with execSync
+
+### Part 2 ✅
+- [x] Sequelize and Prisma integration
+- [x] Docker containerization
+- [x] CRUD API implementation
+- [x] Database save functionality
+- [x] Playwright testing (2x tests)
+- [x] User feedback survey integration
+- [x] Application instrumentation
+- [x] Cloud deployment (AWS)
+- [x] Lambda function integration
+
+## 🏗️ Architecture
+
+### Frontend
+- **Next.js 15** with App Router
+- **React 19** with TypeScript
+- **Tailwind CSS** for styling
+- **Bootstrap** for additional components
+
+### Backend
+- **Next.js API Routes** for serverless functions
+- **Sequelize ORM** for database operations
+- **SQLite** for data persistence
+- **CORS** for cross-origin requests
+
+### Infrastructure
+- **Docker** for containerization
+- **OpenTelemetry** for observability
+- **AWS Services** for cloud deployment
+- **Playwright** for testing
+
+## 🔒 Security
+
+- **Input Validation** on all forms
+- **SQL Injection** prevention with ORM
+- **CORS** configuration
+- **Environment Variables** for secrets
+- **IAM Roles** for AWS permissions
+
+## 📈 Performance
+
+- **Static Generation** where possible
+- **Image Optimization** with Next.js
+- **Code Splitting** and lazy loading
+- **Database Indexing** for queries
+- **Caching** strategies
+
+## 🤝 Contributing
 
 1. Fork the repository
 2. Create a feature branch
 3. Make your changes
-4. Add tests for new functionality
+4. Add tests if applicable
 5. Submit a pull request
 
-## License
+## 📄 License
 
-This project is part of CSE3CWA/CSE5006 Assignment 2 at La Trobe University.
+This project is created for educational purposes as part of CSE3CWA/CSE5006 assignment.
 
-## Acknowledgments
+## 👨‍💻 Author
+
+**Student Number:** 91704  
+**Course:** CSE3CWA/CSE5006  
+**Institution:** La Trobe University
+
+## 🎉 Acknowledgments
 
 - La Trobe University for the assignment requirements
 - Next.js team for the excellent framework
-- Playwright team for the testing framework
+- OpenTelemetry community for monitoring tools
+- AWS for cloud services
 - All open-source contributors
 
 ---
 
-**Note**: This is a student project for educational purposes. The git command execution is simulated for safety reasons.
+**Note:** This application demonstrates full-stack development skills including frontend, backend, database, testing, monitoring, and cloud deployment capabilities as required for Assignment 2.
