@@ -1,0 +1,50 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model GitCommand {
+  id          String   @id @default(cuid())
+  command     String
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  executedAt  DateTime?
+  status      String   @default("pending") // pending, success, error
+  output      String?
+  databaseType String  @default("prisma")
+  
+  @@map("git_commands")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  username  String   @unique
+  email     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  commands  GitCommand[]
+  
+  @@map("users")
+}
+
+model Repository {
+  id          String   @id @default(cuid())
+  name        String
+  owner       String
+  url         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  
+  commands    GitCommand[]
+  
+  @@map("repositories")
+}
