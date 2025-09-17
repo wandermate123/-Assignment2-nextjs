@@ -10,7 +10,7 @@ export async function POST(request: NextRequest) {
       data: eventData.data,
       timestamp: eventData.timestamp,
       userAgent: request.headers.get('user-agent'),
-      ip: request.ip || request.headers.get('x-forwarded-for')
+      ip: request.headers.get('x-forwarded-for') || 'unknown'
     })
 
     // In a real implementation, you would:
