@@ -29,7 +29,7 @@ export const createS3Bucket = async (bucketName: string) => {
     const result = await s3Client.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -42,7 +42,7 @@ export const setS3BucketPolicy = async (bucketName: string, policy: object) => {
     const result = await s3Client.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -54,7 +54,7 @@ export const deleteS3Bucket = async (bucketName: string) => {
     const result = await s3Client.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -73,7 +73,7 @@ export const createLambdaFunction = async (functionName: string, code: string) =
     const result = await lambdaClient.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -85,7 +85,7 @@ export const deleteLambdaFunction = async (functionName: string) => {
     const result = await lambdaClient.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -104,7 +104,7 @@ export const createAPIGateway = async (apiName: string) => {
     const result = await apiGatewayClient.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
@@ -116,7 +116,7 @@ export const deleteAPIGateway = async (apiId: string) => {
     const result = await apiGatewayClient.send(command);
     return { success: true, data: result };
   } catch (error) {
-    return { success: false, error: error.message };
+    return { success: false, error: error instanceof Error ? error.message : String(error) };
   }
 };
 
