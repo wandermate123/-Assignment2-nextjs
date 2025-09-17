@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
-import Navbar from '@/Components/Navbar';
+import Navbar from '../../Components/Navbar';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 // Define the Blog type
