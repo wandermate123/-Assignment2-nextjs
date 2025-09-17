@@ -66,17 +66,6 @@ export function Header() {
               Home
             </Link>
             <Link
-              href="/about"
-              className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
-                activeTab === 'about'
-                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                  : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-              }`}
-              onClick={() => handleTabChange('about')}
-            >
-              About
-            </Link>
-            <Link
               href="/github"
               className={`px-3 py-2 rounded-md text-sm font-medium transition-colors ${
                 activeTab === 'github'
@@ -213,17 +202,6 @@ export function Header() {
                 onClick={() => handleTabChange('home')}
               >
                 Home
-              </Link>
-              <Link
-                href="/about"
-                className={`block px-3 py-2 rounded-md text-base font-medium transition-colors ${
-                  activeTab === 'about'
-                    ? 'bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300'
-                    : 'text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400'
-                }`}
-                onClick={() => handleTabChange('about')}
-              >
-                About
               </Link>
               <Link
                 href="/github"
